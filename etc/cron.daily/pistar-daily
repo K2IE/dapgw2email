@@ -1,0 +1,4 @@
+#!/bin/bash
+/usr/local/sbin/pistar-daily.cron
+# We need to restart dapgw2email daily because of logfile rotation
+systemctl restart dapgw2email
