@@ -1,11 +1,11 @@
 This python3 program is meant to be run on a working Pi-Star system.  It will
-monitor incoming DAP GW traffic for messages send to a specified RIC.  When
+monitor incoming DAP GW traffic for messages sent to a specified RIC.  When
 detected, it will trigger an email with the contents of the pager message.
 
 This is a great way to play with POCSAG paging for amateur radio without
 having to first invest in a pager.
 
-Thanks to the DAPNET (Decentralized Amateur Paging Network) folks for provining
+Thanks to the DAPNET (Decentralized Amateur Paging Network) folks for providing
 the backend that makes all this work.  Thanks to G4KLX for providing the
 gateway software and to MW0MWZ for including it in his Pi-Star distribution.
 
