@@ -17,6 +17,25 @@ A systemd unit service file is included.  Look also at the line added to
 /etc/cron.daily/pistar-daily script to restart dapgw2email daily after Pi-Star
 does its daily updates.
 
+Here is the file structure for this project:
+
+├── etc
+│   ├── cron.daily
+│   │   └── pistar-daily
+│   └── default
+│       └── dapgw2email
+├── lib
+│   └── systemd
+│       └── system
+│           ├── dapgw2email.service
+│           └── dapgw2email.timer
+├── LICENSE
+├── README
+└── usr
+    └── local
+        └── bin
+            └── dapgw2email.py
+
 This software is offered under the terms of the GNU General Public License
 v3.0.
 

@@ -5,7 +5,7 @@ After=syslog.target network.target dapgateway.service
 [Service]
 Type=simple
 EnvironmentFile=/etc/default/dapgw2email
-ExecStart=/home/pi-star/dapgw2email.py $RIC $SMTP $SENDER $RECIPIENT
+ExecStart=/usr/local/bin/dapgw2email.py $RIC $SMTP $SENDER $RECIPIENT
 
 [Install]
 WantedBy=multi-user.target
