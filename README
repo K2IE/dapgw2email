@@ -9,6 +9,8 @@ Thanks to the DAPNET (Decentralized Amateur Paging Network) folks for providing
 the backend that makes all this work.  Thanks to G4KLX for providing the
 gateway software and to MW0MWZ for including it in his Pi-Star distribution.
 
+For more information about amateur radio paging, see https://hampager.de.
+
 Configuration needs to be done in the /etc/default/dapgw2email file.
 
 A systemd unit service file is included.  Look also at the line added to
