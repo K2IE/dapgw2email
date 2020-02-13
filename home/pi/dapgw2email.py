@@ -1,15 +1,19 @@
 #!/usr/bin/python3
 
 # Author: K2IE
+# Published under GPL v3.0
 
 import time
 import subprocess
 import select
 import sys
 import smtplib
-from datetime import datetime
+import datetime
 
-filename = "/var/log/pi-star/DAPNETGateway-" + datetime.today().strftime('%Y-%m-%d') + ".log"
+dt1 = datetime.datetime.now(datetime.timezone.utc)
+dt2 = dt1.strftime('%Y-%m-%d')
+
+filename = "/var/log/pi-star/DAPNETGateway-" + dt2 + ".log"
 
 ric = b'to ' + sys.argv[1].encode('utf-8') + b','
 
