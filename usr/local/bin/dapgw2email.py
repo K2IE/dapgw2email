@@ -10,10 +10,21 @@ import sys
 import smtplib
 import datetime
 
-dt1 = datetime.datetime.now(datetime.timezone.utc)
-dt2 = dt1.strftime('%Y-%m-%d')
+def curr_utc_date():
+   dt1 = datetime.datetime.now(datetime.timezone.utc)
+   dt2 = dt1.strftime('%Y-%m-%d')
+   return dt2
 
-filename = "/var/log/pi-star/DAPNETGateway-" + dt2 + ".log"
+def init_log_tail():
+   global p
+   global f
+   today = curr_utc_date()
+   filename = "/var/log/pi-star/DAPNETGateway-" + today + ".log"
+   f = subprocess.Popen(['tail','-F',filename],\
+        stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+   p = select.poll()
+   p.register(f.stdout)
+   return today
 
 ric = b'to ' + sys.argv[1].encode('utf-8') + b','
 
@@ -26,12 +37,13 @@ Subject   = "Subject: DAP GW Pager Notification\n\n"
 
 header    = myFrom + myTo + Subject 
 
-f = subprocess.Popen(['tail','-F',filename],\
-        stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-p = select.poll()
-p.register(f.stdout)
+today = init_log_tail()
 
 while True:
+    # Check for new UTC date and switch logfiles
+    if today != curr_utc_date():
+       p.terminate()
+       today = init_log_tail()
     if p.poll(1):
         p_line = f.stdout.readline()
         if ric in p_line:

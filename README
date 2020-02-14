@@ -13,15 +13,11 @@ For more information about amateur radio paging, see https://hampager.de.
 
 Configuration needs to be done in the /etc/default/dapgw2email file.
 
-A systemd unit service file is included.  Look also at the line added to
-/etc/cron.daily/pistar-daily script to restart dapgw2email daily after Pi-Star
-does its daily updates.
+A systemd unit service file is included.
 
 Here is the file structure for this project:
 
 ├── etc
-│   ├── cron.daily
-│   │   └── pistar-daily
 │   └── default
 │       └── dapgw2email
 ├── lib
