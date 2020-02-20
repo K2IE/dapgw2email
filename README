@@ -11,15 +11,15 @@ gateway software and to MW0MWZ for including it in his Pi-Star distribution.
 
 For more information about amateur radio paging, see https://hampager.de.
 
-Configuration needs to be done in the /etc/default/dapgw2email file.
+Configuration needs to be done in the /etc/dapgw2email.conf file.  You may
+specify one primary RIC and up to 9 Rubrics (or other RICs).
 
 A systemd unit service file is included.
 
 Here is the file structure for this project:
 
 ├── etc
-│   └── default
-│       └── dapgw2email
+│   └── dapgw2email.conf
 ├── lib
 │   └── systemd
 │       └── system

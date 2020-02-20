@@ -1,8 +1,0 @@
-# RIC to monitor
-RIC=12234567
-# Your SMTP Server (port 25 unauthenticated)
-SMTP=smtp.somehost.com
-# From email address (use a real one)
-SENDER=pi-star@yourdomain.com
-# To email address
-RECIPIENT=yourcall@yourdomain.com

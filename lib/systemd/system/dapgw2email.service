@@ -1,11 +1,10 @@
 [Unit]
 Description=DAP GW to Email Service
-After=syslog.target network.target dapgateway.service
+After=syslog.target network.target dapnetgateway.service
 
 [Service]
 Type=simple
-EnvironmentFile=/etc/default/dapgw2email
-ExecStart=/usr/local/bin/dapgw2email.py $RIC $SMTP $SENDER $RECIPIENT
+ExecStart=/usr/local/bin/dapgw2email.py
 
 [Install]
 WantedBy=multi-user.target
