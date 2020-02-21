@@ -18,20 +18,6 @@ A systemd unit service file is included.
 
 Here is the file structure for this project:
 
-├── etc
-│   └── dapgw2email.conf
-├── lib
-│   └── systemd
-│       └── system
-│           ├── dapgw2email.service
-│           └── dapgw2email.timer
-├── LICENSE
-├── README
-└── usr
-    └── local
-        └── bin
-            └── dapgw2email.py
-
 This software is offered under the terms of the GNU General Public License
 v3.0.
 
