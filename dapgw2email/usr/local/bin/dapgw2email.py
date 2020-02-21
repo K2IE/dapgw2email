@@ -71,71 +71,17 @@ except:
    log.error("Check " + conffile + " for proper RECIPIENT value in [dapgw2email] section")
    ErrExit() 
 
-try:
-   r1 = config.get('dapgw2email', 'R1').encode('utf-8')
-except:
-   pass
+rubrics = ['R'+str(i) for i in range(1, 10)]  # create list containing names of optional rubrics r1-r9
+rlist = [ric]  # initialize list of rubric values with RIC as first item
 
-try:
-   r2 = config.get('dapgw2email', 'R2').encode('utf-8')
-except:
-   pass
+# loop through dict of optional rubric names and add the rubric value to rlist if it exists in the config file
+for r in rubrics:
+   try:
+      rubric_value = config.get('dapgw2email', r).encode('utf-8')
+      rlist.append(rubric_value)
+   except:
+      pass
 
-try:
-   r3 = config.get('dapgw2email', 'R3').encode('utf-8')
-except:
-   pass
-
-try:
-   r4 = config.get('dapgw2email', 'R4').encode('utf-8')
-except:
-   pass
-
-try:
-   r5 = config.get('dapgw2email', 'R5').encode('utf-8')
-except:
-   pass
-
-try:
-   r6 = config.get('dapgw2email', 'R6').encode('utf-8')
-except:
-   pass
-
-try:
-   r7 = config.get('dapgw2email', 'R7').encode('utf-8')
-except:
-   pass
-
-try:
-   r8 = config.get('dapgw2email', 'R8').encode('utf-8')
-except:
-   pass
-
-try:
-   r9 = config.get('dapgw2email', 'R9').encode('utf-8')
-except:
-   pass
-
-rlist = []
-rlist.append(ric)
-if 'r1' in locals():
-   rlist.append(r1)
-if 'r2' in locals():
-   rlist.append(r2) 
-if 'r3' in locals():
-   rlist.append(r3) 
-if 'r4' in locals():
-   rlist.append(r4)
-if 'r5' in locals():
-   rlist.append(r5)
-if 'r6' in locals():
-   rlist.append(r6)
-if 'r7' in locals():
-   rlist.append(r7)
-if 'r8' in locals():
-   rlist.append(r8)
-if 'r9' in locals():
-   rlist.append(r9) 
 
 myFrom    = "From: Pi-Star <" + sender + ">\n"
 myTo      = "To: " + recipient + "\n"
