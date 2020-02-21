@@ -1,0 +1,10 @@
+Package: dapgw2email
+Source: dapgw2email
+Architecture: all
+Maintainer: Dan Srebnick <k2ie at k2ie.net>
+Depends: python3
+Section: hamradio
+Priority: optional
+Version: 0.9
+Description: Sends DAPNET GW pages to email
+Homepage: http://github.com/K2IE/dapgw2email
