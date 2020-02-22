@@ -40,34 +40,36 @@ if not os.path.isfile(conffile):
    ErrExit()
 
 config = configparser.ConfigParser()
+config.read(conffile)
 
-try:
-   config.read(conffile)
-except:
+# check whether config file has correct section, this will fail if the configfile does not exist at the specified path
+if not config.has_section('dapgw2email'):
    log.error("Check " + conffile + " for proper [dapgw2email] section heading")
    ErrExit()
 
+# the following try/except blocks check for required options in the config file, logging an error message and exiting
+# if the option is not found.
 try:
    ric = config.get('dapgw2email', 'RIC').encode('utf-8')
-except:
+except configparser.NoOptionError:
    log.error("Check " + conffile + " for proper RIC value in [dapgw2email] section")
    ErrExit()
 
 try:
    smtp = config.get('dapgw2email', 'SMTP')
-except:
+except configparser.NoOptionError:
    log.error("Check " + conffile + " for proper SMTP value in [dapgw2email] section")
    ErrExit() 
 
 try:
    sender = config.get('dapgw2email', 'SENDER')
-except:
+except configparser.NoOptionError:
    log.error("Check " + conffile + " for proper SENDER value in [dapgw2email] section")
    ErrExit() 
 
 try:
    recipient = config.get('dapgw2email', 'RECIPIENT')
-except:
+except configparser.NoOptionError:
    log.error("Check " + conffile + " for proper RECIPIENT value in [dapgw2email] section")
    ErrExit() 
 
@@ -79,7 +81,7 @@ for r in rubrics:
    try:
       rubric_value = config.get('dapgw2email', r).encode('utf-8')
       rlist.append(rubric_value)
-   except:
+   except configparser.NoOptionError:
       pass
 
 
