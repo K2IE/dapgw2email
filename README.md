@@ -14,8 +14,6 @@ For more information about amateur radio paging, see https://hampager.de.
 Configuration needs to be done in the /etc/dapgw2email.conf file.  You may
 specify one primary RIC and up to 9 Rubrics (or other RICs).
 
-A systemd unit service file is included.
-
 The latest release is available as a .deb package.  See:
 
 https://github.com/K2IE/dapgw2email/releases
