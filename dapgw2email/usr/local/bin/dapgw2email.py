@@ -42,13 +42,13 @@ if not os.path.isfile(conffile):
 config = configparser.ConfigParser()
 config.read(conffile)
 
-# check whether config file has correct section, this will fail if the configfile does not exist at the specified path
+# Check whether config file exists and has [dapgw2email] stanza
 if not config.has_section('dapgw2email'):
    log.error("Check " + conffile + " for proper [dapgw2email] section heading")
    ErrExit()
 
-# the following try/except blocks check for required options in the config file, logging an error message and exiting
-# if the option is not found.
+# Check for required options in the config file.  If not found, log error and
+# exit.
 try:
    ric = config.get('dapgw2email', 'RIC').encode('utf-8')
 except configparser.NoOptionError:
@@ -73,10 +73,14 @@ except configparser.NoOptionError:
    log.error("Check " + conffile + " for proper RECIPIENT value in [dapgw2email] section")
    ErrExit() 
 
-rubrics = ['R'+str(i) for i in range(1, 10)]  # create list containing names of optional rubrics r1-r9
-rlist = [ric]  # initialize list of rubric values with RIC as first item
+# Create list of optional rubrics (R1-R9 in conf file)
+rubrics = ['R'+str(i) for i in range(1, 10)]
 
-# loop through dict of optional rubric names and add the rubric value to rlist if it exists in the config file
+# Initialize list of RICs to include pager number
+rlist = [ric]
+
+# Loop through dict of optional rubric names and add the rubric value
+# to rlist if it exists in the config file
 for r in rubrics:
    try:
       rubric_value = config.get('dapgw2email', r).encode('utf-8')
