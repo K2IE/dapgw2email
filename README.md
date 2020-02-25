@@ -16,7 +16,17 @@ specify one primary RIC and up to 9 Rubrics (or other RICs).
 
 A systemd unit service file is included.
 
-Here is the file structure for this project:
+The latest release is available as a .deb package.  See:
+
+https://github.com/K2IE/dapgw2email/releases
+
+The package includes a systemd unit .service file and a .timer file.  Enable
+the .timer file after you have installed and configured the package.  Do
+not enable the .service but start it.
+
+ sudo systemctl daemon-reload
+ sudo systemctl enable dapgw2email.timer
+ sudo systemctl start dapgw2email.service
 
 This software is offered under the terms of the GNU General Public License
 v3.0.
