@@ -22,9 +22,11 @@ The package includes a systemd unit .service file and a .timer file.  Enable
 the .timer file after you have installed and configured the package.  Do
 not enable the .service but start it.
 
+````
  sudo systemctl daemon-reload
  sudo systemctl enable dapgw2email.timer
  sudo systemctl start dapgw2email.service
+ ````
 
 This software is offered under the terms of the GNU General Public License
 v3.0.
