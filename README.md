@@ -23,13 +23,13 @@ the .timer file after you have installed and configured the package.  Do
 not enable the .service but start it.
 
 ````
- sudo systemctl daemon-reload
- sudo systemctl enable dapgw2email.timer
- sudo systemctl start dapgw2email.service
+sudo systemctl daemon-reload
+sudo systemctl enable dapgw2email.timer
+sudo systemctl start dapgw2email.service
  ````
 
 This software is offered under the terms of the GNU General Public License
 v3.0.
 
-Dan Srebnick (K2IE)
+Dan Srebnick (K2IE)<br>
 February 12, 2020
