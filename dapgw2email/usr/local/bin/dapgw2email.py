@@ -91,7 +91,7 @@ for r in rubrics:
 
 myFrom    = "From: Pi-Star <" + sender + ">\n"
 myTo      = "To: " + recipient + "\n"
-Subject   = "Subject: DAP GW Pager Notification\n\n"
+Subject   = "Subject: DAP GW Page To "
 
 header    = myFrom + myTo + Subject 
 
@@ -108,7 +108,8 @@ while True:
            if rval in p_line:
               pos = p_line.find(b'Alphanumeric')
               message = p_line[pos+15: -2]
-              smtpmsg = header + message.decode('utf-8')
+              smtpmsg = header + rval.decode('utf-8') + "\n\n" \
+                 + message.decode('utf-8')
               try:
                  smtpObj = smtplib.SMTP(smtp, 25)
                  smtpObj.sendmail (sender, recipient, smtpmsg)
