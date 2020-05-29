@@ -104,18 +104,19 @@ while True:
        today = init_log_tail()
     if p.poll(1):
         p_line = f.stdout.readline()
-        for rval in rlist:
-           if rval in p_line:
-              pos = p_line.find(b'Alphanumeric')
-              message = p_line[pos+15: -2]
-              smtpmsg = header + rval.decode('utf-8') + "\n\n" \
-                 + message.decode('utf-8')
-              try:
-                 smtpObj = smtplib.SMTP(smtp, 25)
-                 smtpObj.sendmail (sender, recipient, smtpmsg)
-                 smtpObj.quit
-              except:
-                 log.error("Error: Check SMTP configuration.")
-                 ErrExit() 
-              break
+        if b'Queueing' in p_line:
+           for rval in rlist:
+              if rval in p_line:
+                 pos = p_line.find(b'Alphanumeric')
+                 message = p_line[pos+15: -2]
+                 smtpmsg = header + rval.decode('utf-8') + "\n\n" \
+                    + message.decode('utf-8')
+                 try:
+                    smtpObj = smtplib.SMTP(smtp, 25)
+                    smtpObj.sendmail (sender, recipient, smtpmsg)
+                    smtpObj.quit
+                 except:
+                    log.error("Error: Check SMTP configuration.")
+                    ErrExit() 
+                 break
     time.sleep(1)
