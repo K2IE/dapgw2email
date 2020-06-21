@@ -23,11 +23,13 @@ def init_log_tail():
    global p
    global f
    today = curr_utc_date()
+   log.warning("Opening log file")
    filename = "/var/log/pi-star/DAPNETGateway-" + today + ".log"
    f = subprocess.Popen(['tail','-F',filename],\
         stdout=subprocess.PIPE,stderr=subprocess.PIPE)
    p = select.poll()
    p.register(f.stdout)
+   log.warning("Log file open successful")
    return today
 
 def ErrExit():
@@ -100,7 +102,7 @@ today = init_log_tail()
 while True:
     # Check for new UTC date and switch logfiles
     if today != curr_utc_date():
-       p.terminate()
+       p.unregister(f.stdout)
        today = init_log_tail()
     if p.poll(1):
         p_line = f.stdout.readline()
