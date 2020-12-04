@@ -20,6 +20,7 @@ Pi-Star is restrictive about outbound access, so you'll need to add a firewall
 rule to allow the outbound email access.  These go in /root/ipv4.fw:
 
 iptables -A OUTPUT -p tcp --dport 25   -j ACCEPT
+<br>
 iptables -A OUTPUT -p tcp --dport 465  -j ACCEPT
 
 You only need the rule for the port that you will use.  sudo pistar-firewall
