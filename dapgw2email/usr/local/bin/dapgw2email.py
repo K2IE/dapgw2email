@@ -64,6 +64,20 @@ except configparser.NoOptionError:
    ErrExit() 
 
 try:
+   use_ssl = config.get('dapgw2email', 'USE_SSL')
+except configparser.NoOptionError:
+   log.error("Check " + conffile + " for proper USE_SSL value in [dapgw2email] section")
+   ErrExit()
+
+if use_ssl:
+   try:
+      smtp_user = config.get('dapgw2email', 'SMTP_USER')
+      smtp_pw = config.get('dapgw2email', 'SMTP_PW')
+   except configparser.NoOptionError:
+      log.error("Check " + conffile + " for proper SMTP_USER & SMTP_PW values in [dapgw2email] section")
+      ErrExit()
+
+try:
    sender = config.get('dapgw2email', 'SENDER')
 except configparser.NoOptionError:
    log.error("Check " + conffile + " for proper SENDER value in [dapgw2email] section")
@@ -99,6 +113,8 @@ header    = myFrom + myTo + Subject
 
 today = init_log_tail()
 
+print ('Use SSL = ' + use_ssl)
+
 while True:
     # Check for new UTC date and switch logfiles
     if today != curr_utc_date():
@@ -114,7 +130,11 @@ while True:
                  smtpmsg = header + rval.decode('utf-8') + "\n\n" \
                     + message.decode('utf-8')
                  try:
-                    smtpObj = smtplib.SMTP(smtp, 25)
+                    if use_ssl == "1":
+                       smtpObj = smtplib.SMTP_SSL(smtp, 465)
+                       smtpObj.login (smtp_user, smtp_pw)
+                    else:
+                       smtpObj = smtplib.SMTP(smtp, 25)
                     smtpObj.sendmail (sender, recipient, smtpmsg)
                     smtpObj.quit
                  except:
