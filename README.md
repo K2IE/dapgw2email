@@ -12,7 +12,9 @@ gateway software and to MW0MWZ for including it in his Pi-Star distribution.
 For more information about amateur radio paging, see https://hampager.de.
 
 Configuration needs to be done in the /etc/dapgw2email.conf file.  You may
-specify one primary RIC and up to 9 Rubrics (or other RICs).
+specify one primary RIC and up to 9 Rubrics (or other RICs).  If using
+authenticated SMTP on port 465, be sure to set the USE_SSL option and enter
+your email username and password.
 
 The latest release is available as a .deb package.  See:
 
@@ -32,4 +34,4 @@ This software is offered under the terms of the GNU General Public License
 v3.0.
 
 Dan Srebnick (K2IE)<br>
-February 12, 2020
+February 12, 2020 (rev. 12/04/2020)
